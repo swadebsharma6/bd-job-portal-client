@@ -1,6 +1,11 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import AuthContext from "../../../context/AuthContext";
+import jobIcon from '../../../assets/job logo.png'
 
 const Navbar = () => {
+  const { user, logOutUser } = useContext(AuthContext);
+
   const navLinks = (
     <>
       <li className="font-semibold">
@@ -20,14 +25,24 @@ const Navbar = () => {
             color: isActive ? "green" : "",
           })}
         >
-         Signin
+          Signin
         </NavLink>
       </li>
     </>
   );
 
+  const handleLogOut =()=>{
+    logOutUser()
+    .then(()=>{
+      console.log('Successful LogOut')
+    })
+    .catch(error =>{
+      console.log(error.message)
+    })
+  }
+
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-base-100 p-6">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -53,14 +68,29 @@ const Navbar = () => {
             {navLinks}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">Bd Jobs Portal</a>
+        <a className="btn btn-ghost text-xl">
+          <img className="w-12" src={jobIcon} alt="" />
+          <h3 className="text-3xl font-bold">Job Portal</h3>
+        </a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
       <div className="navbar-end">
-            <Link to='/signup' className="underline mr-5 font-bold">Register</Link>
-            <button className="btn btn-sm btn-primary"><Link to='/signin'>Sign In</Link></button>
+        {user ? (
+          <>
+            <button onClick={handleLogOut} className="btn btn-secondary">LogOut Here!</button>
+          </>
+        ) : (
+          <>
+            <Link to="/signup" className="underline mr-5 font-bold">
+              Register
+            </Link>
+            <button className="btn btn-sm btn-primary">
+              <Link to="/signin">Sign In</Link>
+            </button>
+          </>
+        )}
       </div>
     </div>
   );
