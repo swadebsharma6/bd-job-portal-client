@@ -11,6 +11,7 @@ const SignUp = () => {
             const email =form.email.value;
             const password = form.password.value;
             console.log(name, email, password)
+            // Password Validation You must  be do it
       }
 
   return (
@@ -20,12 +21,12 @@ const SignUp = () => {
           <div className="text-center lg:text-left w-96 lg:ml-6">
             <Lottie animationData={lottieSignup}></Lottie>
           </div>
-          <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+          <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl border">
             <h1 className="text-4xl font-bold p-5 ">Sign Up now!</h1>
             <form onSubmit={handleSignUp} className="card-body">
               <fieldset className="fieldset">
                 <label className="fieldset-label">Name</label>
-                <input type="text" name="name" className="input" placeholder="Email" />
+                <input type="text" name="name" className="input" placeholder="Name" />
                 <label className="fieldset-label">Email</label>
                 <input type="email" name="email" className="input" placeholder="Email" />
                 <label className="fieldset-label">Password</label>

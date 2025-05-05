@@ -7,7 +7,7 @@ const Navbar = () => {
         <NavLink
           to="/"
           style={(isActive) => ({
-            color: isActive ? "green" : "blue",
+            color: isActive ? "green" : "",
           })}
         >
           Home
@@ -17,7 +17,7 @@ const Navbar = () => {
         <NavLink
           to="/signin"
           style={(isActive) => ({
-            color: isActive ? "green" : "blue",
+            color: isActive ? "green" : "",
           })}
         >
          Signin
@@ -53,7 +53,7 @@ const Navbar = () => {
             {navLinks}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <a className="btn btn-ghost text-xl">Bd Jobs Portal</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
