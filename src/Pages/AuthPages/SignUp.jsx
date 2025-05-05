@@ -1,8 +1,11 @@
 import Lottie from "lottie-react";
 import lottieSignup from "../../assets/lotte/reg.json";
+import { useContext } from "react";
+import AuthContext from "../../context/AuthContext";
 
 
 const SignUp = () => {
+  const {createUser} = useContext(AuthContext);
 
       const handleSignUp = e =>{
             e.preventDefault();
@@ -12,6 +15,15 @@ const SignUp = () => {
             const password = form.password.value;
             console.log(name, email, password)
             // Password Validation You must  be do it
+
+            // Signup the user with firebase
+            createUser(email, password)
+            .then(result =>{
+              console.log('create', result.user)
+            })
+            .catch(error =>{
+              console.log(error.message)
+            })
       }
 
   return (
