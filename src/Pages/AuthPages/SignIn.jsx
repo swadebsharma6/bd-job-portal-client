@@ -2,9 +2,13 @@ import Lottie from "lottie-react";
 import lottieSignin from "../../assets/lotte/lotte-signin";
 import { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const SignIn = () => {
       const { signInUser} = useContext(AuthContext);
+      const location = useLocation();
+      const navigate = useNavigate();
+      const from = location?.state || '/';
 
       const handleSignin = e =>{
             e.preventDefault();
@@ -17,7 +21,9 @@ const SignIn = () => {
             // Signup the user with firebase
             signInUser(email, password)
             .then(result =>{
-              console.log('create', result.user)
+              console.log('create', result.user);
+              // Redirect to home page
+              navigate(from)
             })
             .catch(error =>{
               console.log(error.message)
